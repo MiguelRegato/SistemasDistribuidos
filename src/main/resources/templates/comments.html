@@ -1,0 +1,14 @@
+<script src="../stars.js"></script>
+
+
+{{#comments}}
+		{{#user}}
+			<a href="/watchProfile/{{id}}"><b>{{name}}</b></a>
+		{{/user}}
+		<p>{{note}}</p>
+		<div class="stars rateyo" data-rateyo-rating="{{stars}}" data-rateyo-num-stars="5" data-rateyo-read-only="true"></div>
+		{{#admin}}
+			<button onclick="location.href='/removeComment/{{id}}'" class="button" id="boton">Eliminate</button><p></p>
+		{{/admin}}
+		<br>
+{{/comments}}

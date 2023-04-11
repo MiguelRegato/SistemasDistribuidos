@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../appFilm.css">
+    <link rel="stylesheet" href="../themeFilm.css">
+    <link rel="stylesheet" href="../jquery.rateyo.css"/>
+    <title>film</title>
+</head>
+<body>
+    {{>headerRegistered}}
+
+	<main role="main">
+		<section class="bg-gray200 pt-5 pb-5">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col">
+						<div class="container">
+							<div>
+								{{#film}}
+									<img src="/{{id}}/image" style="width:100%">
+								{{/film}}
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card card-body">
+							{{#film}}
+								<h1 class="card-title display-4"> {{title}} </h1>
+								<div class="stars" id="rateYo"></div>
+								<br>
+							{{/film}}
+							<form action="/addComment/{{film.id}}" method="post">
+								<div class="form-content">
+									<p><b>Add you comment</b></p>
+									<div class="col-md-12">
+										<textarea name="note" placeholder="Comment" rows=5 cols=52></textarea>
+										<select name="stars" class="form-select" placeholder="Stars" required>
+											<option selected>Stars</option>
+											<option>0</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+									</div>
+									<div class="center">
+										<button class="col-12 button" type="submit">Confirm</button>
+									</div>
+									<input type="hidden" name="_csrf" value="{{token}}" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>	
+	</main>
+
+	<!--Stars-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+	<script src="../stars.js"></script>
+</body>
+</html>

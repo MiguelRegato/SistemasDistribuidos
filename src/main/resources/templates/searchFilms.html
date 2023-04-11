@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Advice.me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="loadButton.js"></script>
+  <link rel="stylesheet" href="loadingButton.css" type="text/css">
+</head>
+<body>
+  <div class="wrapper">
+	{{#logged}}
+		{{#admin}}
+			{{>headerAdmin}}
+		{{/admin}}
+		{{^admin}}
+			{{>headerRegistered}}	
+		{{/admin}}
+	{{/logged}}
+	{{^logged}}
+		{{>headerUnregistered}}
+	{{/logged}}
+    
+    <!-- MAIN CONTAINER -->
+    <section class="main-container" >
+      <h1 id="results">Results</h1>
+
+      	{{#logged}}
+      		{{#admin}}
+      		 <div class="box">
+      			{{#result}}
+					<a href="/filmAdmin/{{id}}"><img src="/{{id}}/image" alt=""></a>
+				{{/result}}
+      		 </div>
+				{{^result}}
+					<p>Nothing found...</p>
+				{{/result}}
+
+				{{#exist}}
+					<div id="moreFilmsAdmin"></div>
+	      			<button id='btnSearchAdmin' class='btnSubmit'>More Films</button>
+	     			<div id="loaderSearchAdmin" class="lds-dual-ring hidden overlay"></div>
+   				{{/exist}}
+      		{{/admin}}
+      		{{^admin}}
+      		 <div class="box">
+				{{#result}}
+					<a href="/filmRegistered/{{id}}"><img src="/{{id}}/image" alt=""></a>
+				{{/result}}
+      		 </div>
+				{{^result}}
+					<p>Nothing found...</p>
+				{{/result}}
+				
+				{{#exist}}
+					<div id="moreFilmsRegistered"></div>
+      				<button id='btnSearchRegistered' class='btnSubmit'>More Films</button>
+     				<div id="loaderSearchRegistered" class="lds-dual-ring hidden overlay"></div>
+     			{{/exist}}
+      		{{/admin}}
+      	{{/logged}}
+      	{{^logged}}
+      	 <div class="box">
+			{{#result}}
+				<a href="/filmUnregistered/{{id}}"><img src="/{{id}}/image" alt=""></a>
+			{{/result}}
+      	 </div>
+			{{^result}}
+				<p>Nothing found...</p>
+			{{/result}}
+			
+			{{#exist}}
+				<div id="moreFilmsUnregistered"></div>
+	      		<button id='btnSearchUnregistered' class='btnSubmit'>More Films</button>
+	     		<div id="loaderSearchUnregistered" class="lds-dual-ring hidden overlay"></div>
+      		{{/exist}}
+      	{{/logged}}
+	  </div>
+    </section> 
+    <!-- END OF MAIN CONTAINER -->
+  </div>
+</body>
+</html>

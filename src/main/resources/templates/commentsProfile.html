@@ -1,0 +1,33 @@
+<script src="../stars.js"></script>
+
+{{#comments}}
+	<div class="row">
+		<div class="row">
+			<div class="col comment">
+				{{#film}}
+					<a href="/filmRegistered/{{id}}">
+						<p><b>{{title}}</b></p>
+					</a>
+				{{/film}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p>{{note}}</p>
+				{{#film}}
+					<div class="stars rateyo" data-rateyo-rating="{{stars}}" data-rateyo-num-stars="5" data-rateyo-read-only="true"></div>
+				{{/film}}
+				<p></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<button class="profile-edit-btn"><a href="/editComment/{{id}}">Edit Comment<a/></button>
+			</div>
+			<div class="col-md-1">
+				<button class="btn"><a href="/removeComment/{{id}}"><img src="/Images/delete.png" width="20px"></a></button>
+			</div>
+		</div>
+	</div>
+	<br>
+{{/comments}}

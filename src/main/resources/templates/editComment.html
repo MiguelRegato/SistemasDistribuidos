@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script
+		type="text/javascript"> (function () {var css = document.createElement('link'); css.href = 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css);})();</script>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+		integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="../jquery.rateyo.css" />
+	<title>Edit Comment</title>
+
+</head>
+
+<body>
+	{{>headerRegistered}}
+	<div class="container">
+		<div class="form">
+			<div class="note">
+				<p>Edit your comment</p>
+			</div>
+			<div class="form-content">
+				<form action="/editComment" method="post">
+					{{#comment}}
+					<input type="hidden" name="id" value="{{id}}" />
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea name="note" rows=5 cols=52>{{note}}</textarea>
+						</div>
+						<div class="form-group">
+							<select name="stars" class="form-select" required>
+								<option selected>{{stars}}</option>
+								<option>0</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+					</div>
+					{{/comment}}
+					<div class="center">
+						{{#comment}}
+						{{#user}}
+						<button type="submit" class="btnSubmit">Confirm</button>
+						<input type="hidden" name="_csrf" value="{{token}}" />
+						{{/user}}
+						{{/comment}}
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

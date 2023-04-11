@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="../jquery.rateyo.css" />
+	<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+		integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+		crossorigin="anonymous"></script>
+		
+	<script type="text/javascript" src="../loadButton.js"></script>
+	<link rel="stylesheet" href="../loadingButton.css" type="text/css">
+	<title>Account</title>
+</head>
+
+<body>
+	{{#admin}}
+		{{>headerAdmin}}
+	{{/admin}}
+	{{^admin}}
+		{{>headerRegistered}}
+	{{/admin}}
+
+	<div class="container emp-profile">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="profile-img">
+					{{#userWatch}}
+					<img src="/{{id}}/imageProfile">
+					{{/userWatch}}
+				</div>
+			</div>
+			<div class="col-md-6">
+				{{#userWatch}}
+				<div class="row">
+					<div class="profile-head">
+						<h1>{{name}}</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 followers"><a href="/followers/{{userWatch.id}}">{{followersCount}} Followers</a></div>
+					<div class="col-md-2 followers"><a href="/following/{{userWatch.id}}">{{followingCount}} Following</a></div>
+				</div>
+				{{/userWatch}}
+			</div>
+			<div class="col-md-2">
+				{{^admin}}
+				<input type="button" class="profile-edit-btn" value="{{follow}}" onclick="location.href='/followUnfollow/{{userWatch.id}}'"/>
+				{{/admin}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-8">
+				<div class="row seccion">
+					<p>Comments</p>
+				</div>
+				
+				{{#comments}}
+				<div class="row">
+					<div class="row">
+						<div class="col comment">
+							{{#film}}
+							<a href="/filmRegistered/{{id}}">
+								<p><b>{{title}}</b></p>
+							</a>
+							{{/film}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<p>{{note}}</p>
+							{{#film}}
+							<div class="stars rateyo" data-rateyo-rating="{{stars}}" data-rateyo-num-stars="5"
+								data-rateyo-read-only="true"></div>
+							{{/film}}
+							<br>
+						</div>
+					</div>
+				</div>
+				{{/comments}}
+				{{^comments}}
+				<p>There are no asserts yet</p>
+				{{/comments}}
+				
+				
+				<div id="moreCommentsWatchProfile"></div>
+				<button id='btnCommentWatchProfile' class='btnSubmit'>More Comments</button>
+				<div id="loaderCommentWatchProfile" class="lds-dual-ring hidden overlay"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+	<script src="../stars.js"></script>
+
+</body>
+
+</html>

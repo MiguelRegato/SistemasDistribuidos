@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="../jquery.rateyo.css"/>
+	<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+		integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+		crossorigin="anonymous"></script>
+	
+	<script type="text/javascript" src="../loadButton.js"></script>
+	<link rel="stylesheet" href="../loadingButton.css" type="text/css">
+	<title>account</title>
+</head>
+
+<body>
+	{{>headerRegistered}}
+
+	<div class="container emp-profile">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="profile-img">
+					{{#user}}
+					<img src="/{{id}}/imageProfile">
+					{{/user}}
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="profile-head">
+						<h1>Profile</h1>
+					</div>
+				</div>
+				<div class="row">
+					{{#user}}
+						<div class="col-md-2 followers"><a href="/followers/{{id}}">{{user.followersCount}} Followers</a></div>
+						<div class="col-md-2 followers"><a href="/following/{{id}}">{{user.followingCount}} Following</a></div>
+					{{/user}}
+				</div>
+			</div>
+			<div class="col-md-2">
+				{{#user}}
+				<button class="profile-edit-btn" onclick="location.href='/editProfile/{{id}}'">Edit Profile</button>
+				{{/user}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="profile-work">
+					<br>
+					<form action="/logout" method="post">
+						{{#user}}
+						<button type="submit" class="profile-edit-btn">Sign out</button>
+						<input type="hidden" name="_csrf" value="{{token}}" />
+						{{/user}}
+					</form>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="tab-content profile-tab" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						<div class="row seccion">
+							<label>About</label>
+						</div>
+						<div class="row">
+							{{#user}}
+							<div class="row">
+								<div class="col-md-6">
+									<label>Name</label>
+								</div>
+								<div class="col-md-6">
+									<p>{{name}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<label>Email</label>
+								</div>
+								<div class="col-md-6">
+									<p>{{email}}</p>
+								</div>
+							</div>
+							{{/user}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-8">
+				<div class="row seccion">
+					<p>Comments</p>
+				</div>
+
+					{{#comments}}
+						<div class="row">
+							<div class="row">
+								<div class="col comment">
+									{{#film}}
+										<a href="/filmRegistered/{{id}}">
+											<p><b>{{title}}</b></p>
+										</a>
+									{{/film}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<p>{{note}}</p>
+									{{#film}}
+										<div class="stars rateyo" data-rateyo-rating="{{stars}}" data-rateyo-num-stars="5" data-rateyo-read-only="true"></div>
+									{{/film}}
+									<p></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<button class="profile-edit-btn"><a href="/editComment/{{id}}">Edit Comment<a/></button>
+								</div>
+								<div class="col-md-1">
+									<button class="btn"><a href="/removeComment/{{id}}"><img src="/Images/delete.png" width="20px"></a></button>
+								</div>
+							</div>
+						</div>
+						<br>
+					{{/comments}}
+					{{^comments}}
+						<p>There are no asserts yet</p>
+					{{/comments}}
+					
+					<div id="moreCommentsProfile"></div>
+					<button id='btnCommentProfile' class='btnSubmit'>More Comments</button>
+					<div id="loaderCommentProfile" class="lds-dual-ring hidden overlay"></div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+	<script src="../stars.js"></script>
+</body>
+
+</html>

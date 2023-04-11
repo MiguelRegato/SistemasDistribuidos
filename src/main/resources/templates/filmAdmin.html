@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../appFilm.css">
+    <link rel="stylesheet" href="../themeFilm.css">
+    <link rel="stylesheet" href="../jquery.rateyo.css">
+    <script type="text/javascript" src="../loadButton.js"></script>
+    <link rel="stylesheet" href="../loadingButton.css" type="text/css">
+    <title>film</title>
+</head>
+<body>
+    {{>headerAdmin}}
+
+	<main role="main">
+		<section class="bg-gray200 pt-5 pb-5">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col">
+						<div class="container">
+							<div>
+								{{#film}}
+									<img src="/{{id}}/image" style="width:100%">
+								{{/film}}
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card card-body">
+							{{#film}}
+								<h1 class="card-title display-4"> {{title}} </h1>
+								<div class="row">
+									<button onclick="location.href='/editFilm/{{film.id}}'" class="button" id="boton">Edit film</button>
+									<button onclick="location.href='/removeFilm/{{film.id}}'" class="button" id="boton">Eliminate</button>
+								</div>
+								<div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5" data-rateyo-read-only="true"></div>
+								<br>
+								<p><b>Release date: </b>{{releaseDate}}</p>
+								<p><b>Minimum age: </b>{{minAge}}</p>
+								<p><b>Genre: </b>{{genre}}</p>
+								<p><b>Running time: </b>{{duration}} minutes</p>
+								<p><b>Cast: </b>{{cast}}</p>
+								<p><b>Director: </b>{{director}}</p>
+								<p><b>Plot:</b></p>
+								<p>{{plot}}</p>
+							{{/film}}
+							
+								<div class="center">
+									<h4> Asserts </h4>
+								</div>
+								{{#comments}}
+									{{#user}}
+										<a href="/watchProfile/{{id}}"><p><b>{{name}}</b></p></a>
+									{{/user}}
+									<p>{{note}}</p>
+									<div class="stars rateyo" data-rateyo-rating="{{stars}}" data-rateyo-num-stars="5" data-rateyo-read-only="true"></div><br>
+									<button onclick="location.href='/removeComment/{{id}}'" class="button btnSubmit2" id="boton">Eliminate</button><br>
+									<p></p>
+								{{/comments}}
+								{{^comments}}
+									<p>There are no asserts yet</p>
+								{{/comments}}
+								
+								<div id="moreComments"></div>
+      							<div class="center"><button id='btnComment' class='btnSubmit2'>More Comments</button></div>
+      							<div id="loaderComment" class="lds-dual-ring hidden overlay"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid mt-5">
+				<div class="col">
+					<div class="row">
+						<h3 class="font-weight-bold">More like this</h3>
+						<div class="box">
+							{{#similar}}
+								<a href="/filmAdmin/{{id}}"><img src="/{{id}}/image" alt=""></a>
+							{{/similar}}
+						</div>
+						<br>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<!--Stars-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+	<script src="../stars.js"></script>
+</body>   
+</html>

@@ -1,0 +1,30 @@
+<header>
+	<div class="AdviceMeLogo">
+		<a id="logo" href="/menuAdmin#home"><img src="/Images/AdviceMe Logo.png" alt="Logo Image"></a>
+	</div>
+	<nav class="main-nav">
+		<a href="/menuAdmin#home">Home</a>
+		<a href="/menuAdmin#action">Action</a>
+		<a href="/menuAdmin#adventure">Adventure</a>
+		<a href="/menuAdmin#animation">Animation</a>
+		<a href="/menuAdmin#comedy">Comedy</a>
+		<a href="/menuAdmin#drama">Drama</a>
+		<a href="/menuAdmin#horror">Horror</a>
+		<a href="/menuAdmin#scienceFiction">Science Fiction</a>
+	</nav>
+	<nav class="sub-nav">
+		<form action="/searchFilms">
+        	<input type="text" name="query" placeholder="Search...">
+        	<button type="submit">
+        		<i class="fas fa-search sub-nav-logo"></i>
+        	</button>
+        	<a href="/addFilm">Post Film</a>
+        </form>
+		<form action="/logout" method="post">
+			{{#user}}
+				<input type="submit" value="Sign out" />
+				<input type="hidden" name="_csrf" value="{{token}}" />
+			{{/user}}
+		</form>
+	</nav>
+</header>
